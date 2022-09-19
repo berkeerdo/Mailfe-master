@@ -34,7 +34,7 @@ function Index(props) {
       rounded={"md"}
       _hover={{ textDecoration: "none" }}
       href={`/${href}`}
-      className={`font-semibold lg:text-[17px] md:text-base ${
+      className={`font-semibold lg:text-[17px] md:text-base hover:border-b-2 hover:border-purple-400 ${
         responsive ? "hover:bg-gray-500/40" : ""
       }`}
     >
@@ -64,9 +64,11 @@ function Index(props) {
             <HStack
               as={"nav"}
               display={{ base: "none", md: "flex" }}
-              className="items-center "
+              className={`${isOpen && "hidden"} items-center`}
             >
-              <NavLink href={"#"}>Özellikler</NavLink>
+              <NavLink click href={"#"}>
+                Özellikler
+              </NavLink>
               <NavLink href={"pricing"}>Fiyatlandırma</NavLink>
               <NavLink href={"contact"}>İletişim</NavLink>
               <ButtonGroup

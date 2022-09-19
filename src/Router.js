@@ -13,7 +13,7 @@ const Router = () => (
         <Box className="px-1 md:px-2 lg:px-6">
           <Navbar Main />
           <Main />
-          <Box className="absolute top-0 -z-50 right-0 lg:px-6 md:px-2 px-1">
+          <Box className="absolute top-0 -z-50 right-0 bg-[#02000E] mx-1 md:mx-2 lg:mx-6">
             <img
               src={HomePage}
               alt="Homa Page Hero"
