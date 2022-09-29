@@ -1,4 +1,6 @@
 import React from "react";
+import InternodLogo from "../../assets/internod-logo.png";
+import MasterVisa from "../../assets/visa-mastercard-transparent.png";
 import MailfeLogo from "../../assets/mailfe-white.png";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -19,14 +21,16 @@ import {
   Center,
   DrawerFooter,
   Container,
+  Image,
 } from "@chakra-ui/react";
 // import { SkipNavLink } from "@chakra-ui/skip-nav";
 import { useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 function Index(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const location = useLocation();
   const btnRef = useRef();
-
   const NavLink = ({ children, href, responsive }) => (
     <Link
       px={2}
@@ -35,7 +39,7 @@ function Index(props) {
       _hover={{ textDecoration: "none" }}
       href={`/${href}`}
       className={`font-semibold lg:text-[17px] md:text-base hover:border-b-2 hover:border-purple-400 ${
-        responsive ? "hover:bg-gray-500/40" : ""
+        responsive ? "hover:bg-gray-500/40 hover:border-none" : ""
       }`}
     >
       {children}
@@ -48,8 +52,8 @@ function Index(props) {
     <>
       <Box
         className={`text-white  py-3 ${
-          props.Main ? "bg-transparent  " : "bg-gray-700"
-        }`}
+          props.Main || props.Manager ? "bg-transparent  " : "bg-gray-700"
+        }  `}
       >
         <Container maxW={"1400px"}>
           <Flex h={"20"} alignItems={"center"} justifyContent={"space-between"}>
@@ -66,6 +70,9 @@ function Index(props) {
               display={{ base: "none", md: "flex" }}
               className={`${isOpen && "hidden"} items-center`}
             >
+              {location.pathname !== "/" && (
+                <NavLink href={"/"}>Ana Sayfa</NavLink>
+              )}
               <NavLink click href={"#"}>
                 Özellikler
               </NavLink>
@@ -114,6 +121,11 @@ function Index(props) {
               <DrawerBody>
                 <Box pb={4} pt={2}>
                   <Stack as={"nav"} spacing={4}>
+                    {location.pathname !== "/" && (
+                      <NavLink href={"/"} responsive>
+                        Ana Sayfa
+                      </NavLink>
+                    )}
                     <NavLink href={"#"} responsive>
                       Özellikler
                     </NavLink>
@@ -129,37 +141,33 @@ function Index(props) {
                     <ButtonGroup
                       display={"flex"}
                       alignItems={"center"}
-                      className="lg:ml-16 justify-center"
+                      flexDir={"column"}
+                      className="justify-center space-y-5"
                     >
                       <Button
                         rounded={"full"}
                         variant="solid"
-                        className="bg-blue-500 p-4 hover:bg-blue-500/30"
+                        className="bg-blue-500 p-4 hover:bg-blue-500/70"
                       >
                         Hesap Oluştur
                       </Button>
                       <Button
                         variant="outline"
                         rounded={"full"}
-                        className="mt-1 hover:text-gray-900 border-sky-600 border-2 p-4"
+                        className="hover:text-gray-900 border-sky-600 border-2 p-4 mr-2"
                       >
                         Giriş Yap
                       </Button>
                     </ButtonGroup>
                   </Stack>
                 </Box>
-                <DrawerFooter>
-                  <Box
-                    className={isOpen ? "-translate-x-96 transition-all" : ""}
-                  >
-                    <img
-                      src={MailfeLogo}
-                      alt="Maillife Logo"
-                      className="h-12"
-                    />
-                  </Box>
-                </DrawerFooter>
               </DrawerBody>
+              <DrawerFooter>
+                <Box className="flex items-center space-x-16">
+                  <Image src={InternodLogo} alt={"Internod Logo"} maxW={"24"} />
+                  <Image src={MasterVisa} alt={"Master Visa"} maxW={"24"} />
+                </Box>
+              </DrawerFooter>
             </DrawerContent>
           </Drawer>
         </Container>

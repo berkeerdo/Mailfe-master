@@ -33,6 +33,9 @@ import {
   Heading,
   Image,
   Link,
+  List,
+  ListIcon,
+  ListItem,
   SimpleGrid,
   Stack,
   Text,
@@ -211,22 +214,13 @@ const MobileAppItem = ({ title, icon, text }) => {
 
 const QuestionItem = ({ title, text }) => {
   return (
-    <AccordionItem>
-      <h2>
-        <AccordionButton>
-          <Box flex="1" textAlign="left" fontWeight={600} fontSize={"lg"}>
-            <div className="flex items-center">
-              <ChevronRightIcon className="h-8 w-8 text-green-500" />
-              {title}
-            </div>
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-      </h2>
-      <AccordionPanel pb={4}>
-        <Text className="font-semibold px-5 text-gray-500">{text}</Text>
-      </AccordionPanel>
-    </AccordionItem>
+    <ListItem className="flex items-center">
+      <ListIcon as={ChevronRightIcon} color={"green.500"} w={"8"} h={"8"} />
+      <Box className="flex flex-col space-y-1 ">
+        <Heading className="text-lg">{title}</Heading>
+        <Text className="text-gray-600">{text}</Text>
+      </Box>
+    </ListItem>
   );
 };
 
@@ -799,14 +793,14 @@ function Main() {
               <Text className="text-sm mt-1">Kredi Kartı Gerektirmez</Text>
             </Flex>
           </Box>
-          <Box className="py-48 bg-white mb-24">
+          <Box className="py-48 bg-white">
             <Flex justify={"center"} align={"center"}>
-              <Heading className="mt-8 text-3xl">
+              <Heading className="text-3xl">
                 Mailfe ile İlgili Sıkça Sorulanlar
               </Heading>
             </Flex>
-            <Container maxW={"full"}>
-              <Accordion allowToggle pt={10}>
+            <Container maxW={"8xl"} pt={"16"}>
+              <List spacing={"14"}>
                 <QuestionItem
                   title={"Kurumsal e-posta servisi nedir?"}
                   text={
@@ -849,7 +843,7 @@ function Main() {
                     "Alan adınızı veya e-posta hizmetinizi Mailfe'den, web hosting hizmetinizi farklı bir firmadan almanız mümkündür. Tek yapmanız gereken Ücretsiz DNS Yöneticisinden, sitenizin Host(A) kaydına sahip IP değerini web hosting hizmeti aldığınız yere yönlendirmek. Üstelik NS adreslerinizi Mailfe'ye yönlendirerek ücretsiz DNS barındırma hizmetinden faydalanabilirsiniz."
                   }
                 />
-              </Accordion>
+              </List>
             </Container>
           </Box>
         </Box>
